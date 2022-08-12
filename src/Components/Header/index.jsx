@@ -5,7 +5,7 @@ import { UserContext } from '../../UserContext';
 import { useContext } from 'react';
 
 export const Header = () => {
-  const context = useContext(UserContext);
+  const { data } = useContext(UserContext);
 
   return (
     <header className={styles.header}>
@@ -17,10 +17,15 @@ export const Header = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink className={styles.login} to="/login">
-              {context.usuario}
-              Login / Criar
-            </NavLink>
+            {data ? (
+              <NavLink className={styles.login} to="/conta">
+                {data.nome}
+              </NavLink>
+            ) : (
+              <NavLink className={styles.login} to="/login">
+                Login / Criar
+              </NavLink>
+            )}
           </li>
         </ul>
       </nav>
