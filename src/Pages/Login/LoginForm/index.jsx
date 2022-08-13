@@ -1,18 +1,18 @@
-import { useEffect } from 'react';
 import { useContext } from 'react';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { TOKEN_POST, USER_GET } from '../../../api';
 import { Button } from '../../../Components/Form/Button';
 import { Input } from '../../../Components/Form/Input';
 import { useForm } from '../../../Hooks/useForm';
 import { UserContext } from '../../../UserContext';
+import { Error } from '../../../Helpers/Error';
+import style from '../Login.module.sass';
+import styleBtn from '../../../Components/Form/Button/Button.module.sass';
 
 export const LoginForm = () => {
   const username = useForm();
   const password = useForm();
 
-  const { userLogin } = useContext(UserContext);
+  const { userLogin, error, loading } = useContext(UserContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,14 +21,28 @@ export const LoginForm = () => {
     }
   };
   return (
-    <section>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
+    <section className="animeLeft">
+      <h1 className="title">Login</h1>
+      <form onSubmit={handleSubmit} className={style.form}>
         <Input label="usuário" type="text" name="username" {...username} />
         <Input label="Senha" type="password" name="password" {...password} />
-        <Button>Entrar</Button>
+        {loading ? (
+          <Button disabled>Carregando...</Button>
+        ) : (
+          <Button>Entrar</Button>
+        )}
+        <Error error={error} />
       </form>
-      <Link to="/login/criar">Cadastro</Link>
+      <Link className={style.perdeu} to="/login/perdeu">
+        Perdeu a senha ?
+      </Link>
+      <div className={style.cadastro}>
+        <h2 className={style.subtitle}>Cadastra-se</h2>
+        <p>Ainda não possui conta ? Cadastre-se no site.</p>
+        <Link className={styleBtn.button} to="/login/criar">
+          Cadastro
+        </Link>
+      </div>
     </section>
   );
 };
