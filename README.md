@@ -1,8 +1,8 @@
-# Dogs 🐶 - Rede Social para Cachorros 
+# Dogs 🐶 - Rede Social para Cachorros
 
 Projeto desenvolvido no curso de React JS da Origamid.
 
-## Tecnologias Utilizadas
+## ⚙️ Tecnologias Utilizadas
 
-  * React JS
-  * Style-Components
+- React JS
+- Styled-Components
