@@ -5,5 +5,5 @@ Projeto desenvolvido no curso de React JS da Origamid.
 ## ⚙️ Tecnologias Utilizadas
 
 - React JS
-- Sass
+- CSS
 - React Router Dom
