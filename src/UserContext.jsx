@@ -18,9 +18,9 @@ export const UserStorage = ({ children }) => {
   const navigate = useNavigate();
 
   const userLogout = useCallback(async () => {
+    setLogin(null);
     setData(null);
     setError(null);
-    setLoading(false);
     setLoading(false);
     window.localStorage.removeItem('token');
     navigate('/login');
