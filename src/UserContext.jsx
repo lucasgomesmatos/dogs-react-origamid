@@ -12,23 +12,25 @@ export const UserContext = createContext();
 
 export const UserStorage = ({ children }) => {
   const [data, setData] = useState(null);
-  const [login, setLogin] = useState(null);
   const [error, setError] = useState(null);
+  const [login, setLogin] = useState(false);
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+  let navigate = useNavigate();
 
-  const userLogout = useCallback(async () => {
-    setLogin(null);
+  const userLogout = useCallback(() => {
     setData(null);
     setError(null);
     setLoading(false);
+    setLogin(false);
+    console.log('saiu');
     window.localStorage.removeItem('token');
     navigate('/login');
   }, [navigate]);
 
   async function getUser(token) {
     const { url, options } = USER_GET(token);
-    const json = await (await fetch(url, options)).json();
+    const response = await fetch(url, options);
+    const json = await response.json();
     setData(json);
     setLogin(true);
   }
@@ -63,6 +65,7 @@ export const UserStorage = ({ children }) => {
           const response = await fetch(url, options);
           if (!response.ok) {
             throw new Error('Token inválido');
+            console.log('oi');
           }
           await getUser(token);
         } catch (err) {
