@@ -12,20 +12,19 @@ export const UserContext = createContext();
 
 export const UserStorage = ({ children }) => {
   const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
-  const [login, setLogin] = useState(false);
+  const [login, setLogin] = useState(null);
   const [loading, setLoading] = useState(false);
-  let navigate = useNavigate();
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const userLogout = useCallback(() => {
     setData(null);
     setError(null);
     setLoading(false);
     setLogin(false);
-    console.log('saiu');
     window.localStorage.removeItem('token');
     navigate('/login');
-  }, [navigate]);
+  }, []);
 
   async function getUser(token) {
     const { url, options } = USER_GET(token);
@@ -65,7 +64,6 @@ export const UserStorage = ({ children }) => {
           const response = await fetch(url, options);
           if (!response.ok) {
             throw new Error('Token inválido');
-            console.log('oi');
           }
           await getUser(token);
         } catch (err) {
@@ -76,7 +74,7 @@ export const UserStorage = ({ children }) => {
       }
     }
     autoLogin();
-  }, [userLogin]);
+  }, [userLogout]);
 
   return (
     <UserContext.Provider
