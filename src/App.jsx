@@ -2,8 +2,10 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Footer from './Components/Footer';
 import Header from './Components/Header';
+import ProtectedRouter from './Helper/ProtectedRouter';
 import Home from './Pages/Home/Home';
 import Login from './Pages/Login/Login';
+import { User } from './Pages/User/User';
 import { UserStorage } from './UserContext';
 
 const App = () => {
@@ -14,7 +16,15 @@ const App = () => {
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/login/*" element={<Login />} />
+            <Route path="login/*" element={<Login />} />
+            <Route
+              path="conta/*"
+              element={
+                <ProtectedRouter>
+                  <User />
+                </ProtectedRouter>
+              }
+            />
           </Routes>
           <Footer />
         </UserStorage>
