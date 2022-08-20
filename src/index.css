@@ -70,15 +70,15 @@ a {
   z-index: -1;
 }
 
+.error {
+  color: #f31;
+  margin: 1rem 0;
+}
+
 .animaLeft {
   opacity: 0;
   transform: translateX(-20px);
   animation: animaLeft 0.3s forwards;
-}
-
-.error {
-  color: #f31;
-  margin: 1rem 0;
 }
 
 @keyframes animaLeft {
