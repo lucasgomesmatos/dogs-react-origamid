@@ -14,7 +14,6 @@ const UserHeaderNav = () => {
   const [mobileMenu, setMobileMenu] = useState(false);
 
   const { pathname } = useLocation();
-  console.log('oi');
   useEffect(() => {
     setMobileMenu(false);
   }, [pathname]);
