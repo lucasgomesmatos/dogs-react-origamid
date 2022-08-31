@@ -45,8 +45,20 @@ const Feed = ({ user }) => {
           page={page}
           setModalPhoto={setModalPhoto}
           setInfinite={setInfinite}
+          infinite={infinite}
         />
       ))}
+      {!infinite && (
+        <p
+          style={{
+            textAlign: 'center',
+            padding: '2rem 0 4rem',
+            color: 'rgb(136, 136, 136)',
+          }}
+        >
+          Não existem mais postagens.
+        </p>
+      )}
     </div>
   );
 };
