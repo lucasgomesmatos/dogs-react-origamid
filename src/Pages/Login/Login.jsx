@@ -7,6 +7,7 @@ import LoginPasswordReset from './LoginPasswordReset';
 import { UserContext } from '../../UserContext';
 import styles from './Login.module.css';
 import NotFound from '../../Helper/NotFound';
+import Head from '../../Components/Head/Head';
 
 const Login = () => {
   const { login } = useContext(UserContext);
@@ -16,6 +17,7 @@ const Login = () => {
   return (
     <section className={styles.login}>
       <div className={styles.forms}>
+        <Head title="Login" description="Login do site Dogs" />
         <Routes>
           <Route path="/" element={<LoginForm />} />
           <Route path="criar" element={<LoginCreate />} />
